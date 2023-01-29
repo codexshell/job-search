@@ -1,29 +1,40 @@
 # job-search
 
 ## Project setup
+
 ```
-pnpm install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
-pnpm run serve
+npm run serve
+```
+
+### Starts the backend server
+```
+npm run backend
 ```
 
 ### Compiles and minifies for production
+
 ```
-pnpm run build
+npm run build
 ```
 
 ### Run your unit tests
+
 ```
-pnpm run test:unit
+npm run test:unit
 ```
 
 ### Lints and fixes files
+
 ```
-pnpm run lint
+npm run lint
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
