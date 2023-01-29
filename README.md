@@ -3,36 +3,36 @@
 ## Project setup
 
 ```
-npm install
+npm or pnpm install
 ```
 
 ### Compiles and hot-reloads for development
 
 ```
-npm run serve
+npm or pnpm run serve
 ```
 
 ### Starts the backend server
 ```
-npm run backend
+npm or pnpm run backend
 ```
 
 ### Compiles and minifies for production
 
 ```
-npm run build
+npm or pnpm run build
 ```
 
 ### Run your unit tests
 
 ```
-npm run test:unit
+npm or pnpm run test:unit
 ```
 
 ### Lints and fixes files
 
 ```
-npm run lint
+npm or pnpm run lint
 ```
 
 ### Customize configuration
