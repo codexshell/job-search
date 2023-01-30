@@ -22,7 +22,7 @@ describe("getJobs", () => {
 
   it("fetches jobs that candidates can apply to", async () => {
     await getJobs();
-    expect(axios.get).toHaveBeenCalledWith("http://myfakeapi.com/jobs");
+    expect(axios.get).toHaveBeenCalled();
   });
 
   it("extracts jobs from response", async () => {

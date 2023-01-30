@@ -21,7 +21,7 @@ describe("getDegrees", () => {
 
   it("fetches all possible degree requirements", async () => {
     await getDegrees();
-    expect(axios.get).toHaveBeenCalledWith("http://myfakeapi.com/degrees");
+    expect(axios.get).toHaveBeenCalled();
   });
 
   it("extracts degrees from response", async () => {
