@@ -24,8 +24,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted } from "vue";
+<script setup lang="ts">
+import { onMounted } from "vue";
 
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
@@ -40,28 +40,12 @@ import JobFiltersSidebarOrganizations from "@/components/JobResults/JobFiltersSi
 import JobFiltersSidebarPrompt from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarPrompt.vue";
 import JobFiltersSidebarSkills from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarSkills.vue";
 
-export default defineComponent({
-  name: "JobFiltersSideBar",
-  components: {
-    FiltersAccordion,
-    JobFiltersSidebarDegrees,
-    JobFiltersSidebarJobTypes,
-    JobFiltersSidebarOrganizations,
-    JobFiltersSidebarPrompt,
-    JobFiltersSidebarSkills,
-  },
-  setup() {
-    const parseSkillsSearchTerm = () => {
-      const route = useRoute();
-      const role = route.query.role || "";
-      const store = useStore(key);
-      store.commit(UPDATE_SKILLS_SEARCH_TERM, role);
-    };
-    onMounted(parseSkillsSearchTerm);
+const parseSkillSearchTerm = () => {
+  const route = useRoute();
+  const role = route.query.role || "";
+  const store = useStore(key);
+  store.commit(UPDATE_SKILLS_SEARCH_TERM, role);
+};
 
-    return {
-      parseSkillsSearchTerm,
-    };
-  },
-});
+onMounted(parseSkillSearchTerm);
 </script>
