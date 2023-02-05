@@ -37,9 +37,7 @@
   </main>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
+<script setup lang="ts">
 import { onBeforeMount } from "vue";
 import { computed } from "@vue/reactivity";
 import {
@@ -52,36 +50,26 @@ import usePreviousAndNextPage from "@/composables/usePreviousAndNextPage";
 
 import JobListing from "@/components/JobResults/JobListing.vue";
 
-export default defineComponent({
-  name: "JobListings",
-  components: {
-    JobListing,
-  },
-  setup() {
-    onBeforeMount(() => {
-      useFetchJobsDispatch();
-      useFetchDegreesDispatch();
-    });
-    const filteredJobs = useFilteredJobs();
-    const currentPage = useCurrentPage();
-    const lastPage = computed(() => Math.ceil(filteredJobs.value.length / 10));
-    const { previousPage, nextPage } = usePreviousAndNextPage(
-      currentPage,
-      lastPage
-    );
-    const displayedJobs = computed(() => {
-      const pageNumber = currentPage.value;
-      const firstJobIndex = (pageNumber - 1) * 10;
-      const lastJobIndex = pageNumber * 10;
-      return filteredJobs.value.slice(firstJobIndex, lastJobIndex);
-    });
-
-    return {
-      previousPage,
-      nextPage,
-      currentPage,
-      displayedJobs,
-    };
-  },
+//   setup() {
+//     onBeforeMount(() => {
+//       useFetchJobsDispatch();
+//       useFetchDegreesDispatch();
+//     });
+onBeforeMount(() => {
+  useFetchJobsDispatch();
+  useFetchDegreesDispatch();
+});
+const filteredJobs = useFilteredJobs();
+const currentPage = useCurrentPage();
+const lastPage = computed(() => Math.ceil(filteredJobs.value.length / 10));
+const { previousPage, nextPage } = usePreviousAndNextPage(
+  currentPage,
+  lastPage
+);
+const displayedJobs = computed(() => {
+  const pageNumber = currentPage.value;
+  const firstJobIndex = (pageNumber - 1) * 10;
+  const lastJobIndex = pageNumber * 10;
+  return filteredJobs.value.slice(firstJobIndex, lastJobIndex);
 });
 </script>
