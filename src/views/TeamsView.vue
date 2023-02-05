@@ -5,7 +5,7 @@
     </template>
 
     <template #subtitle>
-      <h2 class="w-full my-4 text-base font-light">
+      <h2 class="my-4 w-full text-base font-light">
         It's awesome working here, whey don't you come join us
       </h2>
     </template>

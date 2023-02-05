@@ -1,20 +1,20 @@
 <template>
-  <main class="flex flex-col h-screen">
+  <main class="flex h-screen flex-col">
     <section class="flex flex-col pt-10 pb-20">
       <div class="grid grid-cols-12">
-        <div class="col-start-1 col-span-1"></div>
-        <div class="col-start-2 col-span-5">
+        <div class="col-span-1 col-start-1"></div>
+        <div class="col-span-5 col-start-2">
           <head-line />
           <job-search-form />
         </div>
-        <div class="col-start-7 col-span-5 justify-self-center self-center">
+        <div class="col-span-5 col-start-7 self-center justify-self-center">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2376px-Vue.js_Logo2.svg.png"
             alt="An image of the Codex Corps logo"
-            class="w-80 h-80 object-contain"
+            class="h-80 w-80 object-contain"
           />
         </div>
-        <div class="col-start-12 col-span-1"></div>
+        <div class="col-span-1 col-start-12"></div>
       </div>
     </section>
 
@@ -22,11 +22,11 @@
       <template #default="{ img, title, description }">
         <router-link
           to="/jobs/results"
-          class="flex flex-col mx-5 border rounded-lg w-72 bg-brand-gray-2 h-96"
+          class="mx-5 flex h-96 w-72 flex-col rounded-lg border bg-brand-gray-2"
         >
           <img class="object-contain" :src="img" alt="" />
 
-          <div class="h-48 px-6 py-4 mt-3">
+          <div class="mt-3 h-48 px-6 py-4">
             <h3 class="text-lg font-medium">{{ title }}</h3>
             <p class="mt-3 text-sm">
               {{ description }}

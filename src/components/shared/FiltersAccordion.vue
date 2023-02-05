@@ -1,7 +1,7 @@
 <template>
-  <div class="py-5 border-b border-solid border-brand-gray-2">
+  <div class="border-b border-solid border-brand-gray-2 py-5">
     <div
-      class="flex flex-wrap items-center justify-between cursor-pointer"
+      class="flex cursor-pointer flex-wrap items-center justify-between"
       data-test="accordion-header"
       @click="setIsOpen"
     >
@@ -9,7 +9,7 @@
       <font-awesome-icon :icon="caretIcon" />
     </div>
 
-    <div v-if="isOpen" class="w-full mt-5">
+    <div v-if="isOpen" class="mt-5 w-full">
       <slot> Empty Slot !!! </slot>
     </div>
   </div>

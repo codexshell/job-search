@@ -1,7 +1,7 @@
 <template>
   <section class="mb-16">
     <h1
-      class="font-bold tracking-tighter text-8xl mb-14"
+      class="mb-14 text-8xl font-bold tracking-tighter"
       data-test="action-phrase"
     >
       <span :class="actionClass">{{ action }}</span
