@@ -9,7 +9,7 @@ jest.mock("axios", () => ({
 jest.mock("@/store/composables");
 const useUniqueDegreesMock = useUniqueDegrees as jest.Mock;
 
-import JobFiltersSidebarDegrees from "@/components/JobResults/JobFiltersSidebar/jobFiltersSidebarDegrees.vue";
+import JobFiltersSidebarDegrees from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarDegrees.vue";
 
 describe("JobFiltersSidebarDegree", () => {
   it("allows user to filter jobs by degrees", () => {

@@ -34,7 +34,7 @@ import { UPDATE_SKILLS_SEARCH_TERM } from "@/store/constants";
 
 import FiltersAccordion from "@/components/shared/FiltersAccordion.vue";
 
-import JobFiltersSidebarDegrees from "@/components/JobResults/JobFiltersSidebar/jobFiltersSidebarDegrees.vue";
+import JobFiltersSidebarDegrees from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarDegrees.vue";
 import JobFiltersSidebarJobTypes from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarJobTypes.vue";
 import JobFiltersSidebarOrganizations from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarOrganizations.vue";
 import JobFiltersSidebarPrompt from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarPrompt.vue";
