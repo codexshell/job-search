@@ -1,3 +1,4 @@
+t
 <template>
   <button :class="buttonClass">
     {{ text }}

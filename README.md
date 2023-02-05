@@ -18,6 +18,8 @@ npm run serve
 npm run backend
 ```
 
+Only run if you want to define your own custom server. Otherwise the app should be good to go with the default fake api put in place
+
 ### Compiles and minifies for production
 
 ```
