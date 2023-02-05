@@ -12,28 +12,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
+<script setup lang="ts">
 import { useStore } from "vuex";
 import { key } from "@/store";
 import { CLEAR_USER_JOB_FILTER_SELECTIONS } from "@/store/constants";
 import ActionButton from "@/components/shared/ActionButton.vue";
 
-export default defineComponent({
-  name: "JobFiltersSidebarPrompt",
-  components: {
-    ActionButton,
-  },
-  setup() {
-    const store = useStore(key);
-    const clearUserJobFilterSelections = () => {
-      store.commit(CLEAR_USER_JOB_FILTER_SELECTIONS);
-    };
-
-    return {
-      clearUserJobFilterSelections,
-    };
-  },
-});
+const store = useStore(key);
+const clearUserJobFilterSelections = () => {
+  store.commit(CLEAR_USER_JOB_FILTER_SELECTIONS);
+};
 </script>
