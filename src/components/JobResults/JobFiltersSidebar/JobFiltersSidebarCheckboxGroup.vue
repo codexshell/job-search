@@ -5,7 +5,7 @@
         <li
           v-for="value in (uniqueValues as Set<string>)"
           :key="value"
-          class="w-1/2 h-8"
+          class="h-8 w-1/2"
         >
           <input
             :id="value"

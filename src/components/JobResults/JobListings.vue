@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-auto p-8 bg-brand-gray-2">
+  <main class="flex-auto bg-brand-gray-2 p-8">
     <ol>
       <job-listing
         v-for="job in displayedJobs"
@@ -8,9 +8,9 @@
         data-test="job-listing"
       />
     </ol>
-    <div class="mt-8 mx-auto">
+    <div class="mx-auto mt-8">
       <div class="flex flex-row flex-nowrap">
-        <p class="text-sm flex-grow">Page {{ currentPage }}</p>
+        <p class="flex-grow text-sm">Page {{ currentPage }}</p>
         <div class="flex items-center justify-center">
           <router-link
             v-if="previousPage"
