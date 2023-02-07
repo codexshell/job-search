@@ -12,9 +12,9 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import nextElementInList from "@/utils/nextElementInList";
+import { reactive, computed, onBeforeMount, onBeforeUnmount, toRef } from "vue";
 
 type ActionClass = {
   [x: string]: boolean;
@@ -25,36 +25,24 @@ type Data = {
   interval?: number;
 };
 
-export default defineComponent({
-  name: "HeadLine",
-  data(): Data {
-    return {
-      action: "Build",
-      interval: undefined,
-    };
-  },
-  computed: {
-    actionClass(): ActionClass {
-      return {
-        [this.action.toLowerCase()]: true,
-      };
-    },
-  },
-  created() {
-    this.changeTitle();
-  },
-  beforeUnmount() {
-    clearInterval(this.interval);
-  },
-  methods: {
-    changeTitle() {
-      this.interval = setInterval(() => {
-        const actions = ["Build", "Create", "Design", "Code"];
-        this.action = nextElementInList(actions, this.action);
-      }, 3000);
-    },
-  },
+const state = reactive<Data>({
+  action: "Build",
+  interval: undefined,
 });
+
+const actionClass = computed<ActionClass>(() => ({
+  [state.action.toLowerCase()]: true,
+}));
+const changeTitle = () => {
+  state.interval = setInterval(() => {
+    const actions = ["Build", "Create", "Design", "Code"];
+    state.action = nextElementInList(actions, state.action);
+  }, 3000);
+};
+
+onBeforeMount(changeTitle);
+onBeforeUnmount(() => clearInterval(state.interval));
+const action = toRef(state, "action");
 </script>
 
 <style scoped>
