@@ -44,18 +44,8 @@
   </main>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import HeadLine from "@/components/JobSearch/HeadLine.vue";
 import JobSearchForm from "@/components/JobSearch/JobSearchForm.vue";
 import MySpotlight from "@/components/JobSearch/MySpotlight.vue";
-
-export default defineComponent({
-  name: "MyHero",
-  components: {
-    HeadLine,
-    JobSearchForm,
-    MySpotlight,
-  },
-});
 </script>

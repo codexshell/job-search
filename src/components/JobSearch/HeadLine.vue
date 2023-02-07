@@ -42,6 +42,7 @@ const changeTitle = () => {
 
 onBeforeMount(changeTitle);
 onBeforeUnmount(() => clearInterval(state.interval));
+
 const action = toRef(state, "action");
 </script>
 
