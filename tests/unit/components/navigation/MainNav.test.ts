@@ -3,6 +3,9 @@ import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 jest.mock("axios", () => ({
   get: jest.fn(),
 }));
+jest.mock("vuex");
+import { useStore } from "vuex";
+const useStoreMock = useStore as jest.Mock;
 
 import MainNav from "@/components/Navigation/MainNav.vue";
 import { GlobalState } from "@/store/types";
@@ -12,11 +15,8 @@ type Store = {
 };
 
 describe("MainNav", () => {
-  const createConfig = ($store: Store) => ({
+  const createConfig = () => ({
     global: {
-      mocks: {
-        $store,
-      },
       stubs: {
         "router-link": RouterLinkStub,
       },
@@ -24,26 +24,30 @@ describe("MainNav", () => {
   });
 
   it("displays the company name", () => {
-    const $store = {
+    useStoreMock.mockReturnValue({
       state: {
         isLoggedIn: false,
       },
-    };
-    const wrapper = shallowMount(MainNav, createConfig($store));
+    });
+
+    const wrapper = shallowMount(MainNav, createConfig());
+
     expect(wrapper.text()).toMatch(/Codex Careers/);
   });
 
   it("displays menu items for Navigation", () => {
-    const $store = {
+    useStoreMock.mockReturnValue({
       state: {
         isLoggedIn: false,
       },
-    };
-    const wrapper = shallowMount(MainNav, createConfig($store));
+    });
+
+    const wrapper = shallowMount(MainNav, createConfig());
     const NavigationMenuItems = wrapper.findAll(
       "[data-test='main-nav-list-item']"
     );
     const NavigationMenuTexts = NavigationMenuItems.map((item) => item.text());
+
     expect(NavigationMenuTexts).toEqual([
       "Teams",
       "Locations",
@@ -61,48 +65,52 @@ describe("MainNav", () => {
           isLoggedIn: false,
         },
       };
-      const wrapper = shallowMount(MainNav, createConfig($store));
+      const wrapper = shallowMount(MainNav, createConfig());
       const logInButton = wrapper.find("[data-test='login-button']");
       expect(logInButton.exists()).toBe(true);
     });
 
     it("issues call to vuex to log in user", async () => {
       const commit = jest.fn();
-      const $store = {
+      useStoreMock.mockReturnValue({
         state: {
           isLoggedIn: false,
         },
         commit,
-      };
-      const wrapper = shallowMount(MainNav, createConfig($store));
-      const loginButton = wrapper.find("[data-test='login-button']");
+      });
 
+      const wrapper = shallowMount(MainNav, createConfig());
+      const loginButton = wrapper.find("[data-test='login-button']");
       await loginButton.trigger("click");
+
       expect(commit).toHaveBeenCalledWith("LOGIN_USER");
     });
   });
 
   describe("when user is logged in", () => {
     it("display user profile picture", () => {
-      const $store = {
+      useStoreMock.mockReturnValue({
         state: {
           isLoggedIn: true,
         },
-      };
-      const wrapper = shallowMount(MainNav, createConfig($store));
+      });
+
+      const wrapper = shallowMount(MainNav, createConfig());
       const profileImage = wrapper.find("[data-test='profile-image'] ");
+
       expect(profileImage.exists()).toBe(true);
     });
 
     it("displays sub-Navigation menu with additional information", () => {
-      const $store = {
+      useStoreMock.mockReturnValue({
         state: {
           isLoggedIn: true,
         },
-      };
-      const wrapper = shallowMount(MainNav, createConfig($store));
+      });
 
+      const wrapper = shallowMount(MainNav, createConfig());
       const subnav = wrapper.find("[data-test='sub-nav']");
+
       expect(subnav.exists()).toBe(true);
     });
   });

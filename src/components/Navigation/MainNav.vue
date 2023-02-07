@@ -43,46 +43,36 @@
   </header>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { mapMutations, mapState } from "vuex";
+<script setup lang="ts">
+import { reactive, computed, toRef } from "vue";
+import { useStore } from "vuex";
+import { key } from "@/store/index";
 
 import ActionButton from "@/components/shared/ActionButton.vue";
 import ProfileImage from "@/components/Navigation/ProfileImage.vue";
 import SubNav from "@/components/Navigation/SubNav.vue";
 
-import { LOGIN_USER } from "@/store/constants";
+const store = useStore(key);
 
-export default defineComponent({
-  name: "MainNav",
-  components: {
-    ActionButton,
-    ProfileImage,
-    SubNav,
-  },
-  data() {
-    return {
-      menuItems: [
-        { text: "Teams", url: "/teams" },
-        { text: "Locations", url: "/" },
-        { text: "Life at Codex", url: "/" },
-        { text: "How we hire", url: "/" },
-        { text: "Students", url: "/" },
-        { text: "Jobs", url: "/jobs/results" },
-      ],
-    };
-  },
-  computed: {
-    headerHeightClass() {
-      return {
-        "h-16": !this.isLoggedIn,
-        "h-32": this.isLoggedIn,
-      };
-    },
-    ...mapState(["isLoggedIn"]),
-  },
-  methods: {
-    ...mapMutations([LOGIN_USER]),
-  },
+const state = reactive({
+  menuItems: [
+    { text: "Teams", url: "/teams" },
+    { text: "Locations", url: "/" },
+    { text: "Life at Codex", url: "/" },
+    { text: "How we hire", url: "/" },
+    { text: "Students", url: "/" },
+    { text: "Jobs", url: "/jobs/results" },
+  ],
 });
+
+const headerHeightClass = computed(() => {
+  return {
+    "h-16": !store.state.isLoggedIn,
+    "h-32": store.state.isLoggedIn,
+  };
+});
+const isLoggedIn = computed(() => store.state.isLoggedIn);
+const LOGIN_USER = () => store.commit("LOGIN_USER");
+
+const menuItems = toRef(state, "menuItems");
 </script>
