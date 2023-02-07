@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs } from "vue";
+import { computed, toRef } from "vue";
 import { defineProps } from "vue";
 
 const props = defineProps({
@@ -23,7 +23,7 @@ const props = defineProps({
   },
 });
 
-const { type } = toRefs(props);
+const type = toRef(props, "type");
 
 const buttonClass = computed(() => type.value);
 </script>

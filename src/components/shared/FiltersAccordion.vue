@@ -15,29 +15,23 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineProps } from "vue";
 import { ref, computed } from "vue";
 
-export default defineComponent({
-  name: "FiltersAccordion",
-  props: {
-    header: {
-      type: String,
-      required: true,
-    },
-  },
-  setup() {
-    const isOpen = ref(false);
-    const setIsOpen = () => {
-      isOpen.value = !isOpen.value;
-    };
-
-    const caretIcon = computed(() =>
-      isOpen.value ? ["fas", "angle-up"] : ["fas", "angle-down"]
-    );
-
-    return { isOpen, setIsOpen, caretIcon };
+defineProps({
+  header: {
+    type: String,
+    required: true,
   },
 });
+
+const isOpen = ref(false);
+const setIsOpen = () => {
+  isOpen.value = !isOpen.value;
+};
+
+const caretIcon = computed(() =>
+  isOpen.value ? ["fas", "angle-up"] : ["fas", "angle-down"]
+);
 </script>
