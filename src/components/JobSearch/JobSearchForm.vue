@@ -37,38 +37,22 @@
   </form>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import ActionButton from "@/components/shared/ActionButton.vue";
 import TextInput from "@/components/shared/TextInput.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-export default defineComponent({
-  name: "JobSearchForm",
-  components: {
-    ActionButton,
-    TextInput,
-  },
-  setup() {
-    const router = useRouter();
-    const role = ref("");
-    const location = ref("");
+const router = useRouter();
+const role = ref("");
+const location = ref("");
 
-    const searchForJobs = () =>
-      router.push({
-        name: "JobResults",
-        query: {
-          role: role.value,
-          location: location.value,
-        },
-      });
-
-    return {
-      role,
-      location,
-      searchForJobs,
-    };
-  },
-});
+const searchForJobs = () =>
+  router.push({
+    name: "JobResults",
+    query: {
+      role: role.value,
+      location: location.value,
+    },
+  });
 </script>
